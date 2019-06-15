@@ -24,5 +24,33 @@ function addItem(e) {
 
   deleteBtn.className = "btn btn-danger btn-smfloat-right delete";
 
-  console.log("Hello");
+  deleteBtn.appendChild(document.createTextNode("X"));
+
+  li.appendChild(deleteBtn);
+
+  itemList.append(li);
+}
+
+//remove item
+function removeItem(e) {
+  if (e.target.classList.contains("delte")) {
+    var li = e.target.parentElement;
+    itemList.removeChild(li);
+  }
+}
+
+//filter items
+function fitlerItems(e) {
+  var text = e.target.value.toLowerCase();
+
+  var items = itemList.getElementsByTagName("li");
+
+  Array.form(items).forEach(function(item) {
+    var itemName = item.firstChild.textContent;
+    if (itemName.toLowerCase().indexOf(text) != -1) {
+      item.style.display = "block";
+    } else {
+      item.style.display = "none";
+    }
+  });
 }
