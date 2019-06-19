@@ -11,7 +11,7 @@ function addItem(e) {
   newItem.appendChild(inputValue);
   //make delete button
   var btn = document.createElement("button");
-  btn.className = "btn btn-danger btn-sm float-right delete";
+  btn.className = "btn btn-dark btn-sm float-right delete";
   newBtn = document.createTextNode("-");
   btn.appendChild(newBtn);
   // add to main
@@ -36,11 +36,19 @@ function filterFunction(e) {
   inputValue = e.target.value.toLowerCase();
   //get items name as array
   itemsTagName = item.getElementsByTagName("li");
-  console.log(itemsTagName);
+  //  console.log(itemsTagName);
 
-  //Array.from(items).forEach(function(item))
-  console.log(inputValue);
+  Array.from(itemsTagName).forEach(function(item) {
+    var itemName = item.firstChild.textContent;
+    console.log(itemName);
+    if (itemName.toLowerCase().indexOf(inputValue) == -1) {
+      item.style.display = "none";
+    } else {
+      item.style.display = "block";
+    }
+  });
 }
+
 // // Remove item
 // function removeItem(e) {
 //   if (e.target.classList.contains("delete")) {
